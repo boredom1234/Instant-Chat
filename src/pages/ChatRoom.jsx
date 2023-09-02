@@ -1,34 +1,34 @@
+import React from "react";
 import ChatBox from "../components/ChatBox";
 import SendMessage from "../components/SendMessage";
 import { Routes } from "react-router-dom";
-
-import backgroundImage from "../pages/wallpaperflare.com_wallpaper.jpg";
+import chatVideo from "../pages/video.mp4";
 
 const ChatRoom = () => {
   const chatRoomStyle = {
     position: "relative",
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
     minHeight: "100vh",
+    overflow: "hidden", // Prevent video overflow
   };
 
-  const overlayStyle = {
-    content: "",
+  const videoStyle = {
     position: "absolute",
     top: 0,
     left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
-    pointerEvents: "none",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover", // Cover the entire container
+    objectPosition: "center", // Center the video content
+    opacity: 0.01, // Adjust the opacity value as needed (0.0 to 1.0)
   };
 
   return (
     <div style={chatRoomStyle}>
-      {/* Add the overlay using a pseudo-element */}
-      <div style={overlayStyle}></div>
+      {/* Use the <video> element as a background */}
+      <video autoPlay loop muted style={videoStyle}>
+        <source src={chatVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <ChatBox />
       <SendMessage />
     </div>
