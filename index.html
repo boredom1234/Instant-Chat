@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-theme="coffee" lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="./download.png" />
@@ -9,5 +9,42 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const themes = [
+        "light",
+        "dark",
+        "cupcake",
+        "bumblebee",
+        "emerald",
+        "corporate",
+        "synthwave",
+        "retro",
+        "cyberpunk",
+        "valentine",
+        "halloween",
+        "garden",
+        "forest",
+        "aqua",
+        "lofi",
+        "pastel",
+        "fantasy",
+        "wireframe",
+        "black",
+        "luxury",
+        "dracula",
+        "cmyk",
+        "autumn",
+        "business",
+        "acid",
+        "lemonade",
+        "night",
+        "coffee",
+        "winter",
+      ];
+  
+      const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+  
+      document.documentElement.setAttribute("data-theme", randomTheme);
+    </script>
   </body>
 </html>
