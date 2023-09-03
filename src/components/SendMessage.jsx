@@ -30,6 +30,8 @@
         querySnapshot.forEach(async (doc) => {
           await deleteDoc(doc.ref);
         });
+        setValue("");
+        return;
       }
 
       try {
