@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html data-theme="coffee" lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,6 +10,7 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
+      // Array of available themes
       const themes = [
         "light",
         "dark",
@@ -42,9 +43,30 @@
         "winter",
       ];
   
-      const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+      // Function to fetch the current date from an API
+      const fetchCurrentDate = async () => {
+        try {
+          const response = await fetch("http://worldclockapi.com/api/json/utc/now");
+          const data = await response.json();
+          const currentDate = new Date(data.currentDateTime);
   
-      document.documentElement.setAttribute("data-theme", randomTheme);
+          // Log the current time
+          console.log("Current Time:", currentDate.toTimeString());
+  
+          return currentDate;
+        } catch (error) {
+          console.error("Error fetching current date:", error);
+          return new Date(); // Use the local date as a fallback
+        }
+      };
+  
+      // Calculate an index based on the current date to select a theme
+      const currentDate = await fetchCurrentDate();
+      const themeIndex = currentDate.getDate() % themes.length;
+      const selectedTheme = themes[themeIndex];
+  
+      // Set the data-theme attribute of the HTML element
+      document.documentElement.setAttribute("data-theme", selectedTheme);
     </script>
   </body>
 </html>
